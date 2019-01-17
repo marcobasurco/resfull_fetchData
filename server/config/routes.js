@@ -1,7 +1,7 @@
 
 var tasks = require("../controllers/tasks.js")
 
-module.exports = function (app) {
+module.exports = function (app) {   
     app.get('/all', function (req, res) {
         tasks.getTasks(req, res)
     })
@@ -21,6 +21,7 @@ module.exports = function (app) {
 
     app.put("/edit/:id", function (req, res) {
         tasks.editTask(req, res)
+        
     })    
 
 

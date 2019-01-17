@@ -5,58 +5,57 @@ module.exports = {
     getTasks: function (req, res) {
         Task.find({}, function (err, task) {
             if (err) {
-                res.json({ message: "Error", error: err })
+                res.json({ message: "Error", error: err });
             } else {
-                res.json({ message: "Success", data: task })
+                res.json({ message: "Success", data: task });
             }
-        })
+        });
     },
-
     retrieveTaskByID: function (req, res) {
         Task.find({ _id: req.params.id }, function (err, task) {
             if (err) {
-                res.json({ message: "Error", error: err })
+                res.json({ message: "Error", error: err });
             } else {
-                res.json({ message: "Success", data: task })
+                res.json({ message: "Success", data: task });
             }
-        })
+        });
     },
 
     addTask: function (req, res) {
-        var task = new Task(req.body)
-
+        //console.log(req.body)
+        var task = new Task(req.body);
         task.save(function (err) {
             if (err) {
-                console.log("Error")
+                console.log("Error");
 
-                res.json({ message: "Error", error: err })
+                res.json({ message: "Error", error: err });
             } else { // else console.log that we did well and then redirect to the root route
-                console.log("Success")
+                console.log("Success");
 
-                res.json({ message: "Success created", data: task })
+                res.json({ message: "Success", data: task });
             }
-        })
+        });
 
     },
 
     removeTask: function (req, res) {
         Task.deleteOne({ _id: req.params.id }, function (err, task) {
             if (err) {
-                res.json({ message: "Error", error: err })
+                res.json({ message: "Error", error: err });
             } else {
-                res.json({ message: "Success", data: task })
+                res.json({ message: "Success" });
             }
-        })
+        });
     },
 
     editTask: function (req, res) {
         Task.updateOne({ _id: req.params.id }, req.body, function (err) {
             if (err) {
-                res.json({ message: "Error", error: err })
+                res.json({ message: "Error", error: err });
             } else {
-                res.json({ message: "Success" })
+                res.json({ message: "Success" });
             }
-        })
+        });
     }
-}
+};
 
